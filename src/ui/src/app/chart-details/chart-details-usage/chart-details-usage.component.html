@@ -1,7 +1,11 @@
 <div class="chart-details-usage">
-  <label>Usage</label>
-  <code>
-    <p *ngIf="showRepoInstructions">{{ repoAddInstructions }}</p>
-    <p>helm install {{ cmdChartId }} --version {{ currentVersion }}</p>
-  </code>
+  <h1>Usage</h1>
+  <md-input-container *ngIf="showRepoInstructions">
+    <label>Add Repository</label>
+    <input md-input value="{{repoAddInstructions}}" class="cmd">
+  </md-input-container>
+  <md-input-container>
+    <label>Install Chart</label>
+    <input md-input value="helm install {{ cmdChartId }} --version {{ currentVersion }}">
+  </md-input-container>
 </div>
