@@ -19,6 +19,8 @@ api:
     requests:
       cpu: 100m
       memory: 128Mi
+  livenessProbe:
+    initialDelaySeconds: 180
   config:
     repos:
       # Official repositories
@@ -34,6 +36,8 @@ api:
       #  source: my-repository-source
     # Enable Helm deployment integration
     releasesEnabled: false
+    # Cache refresh interval in sec.
+    cacheRefreshInterval: 3600
 
 ui:
   replicaCount: 2
