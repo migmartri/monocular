@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 api:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: gcr.io/helm-ui/monocular-api
     tag: latest
@@ -24,23 +24,22 @@ api:
   config:
     repos:
       # Official repositories
-      - name: stable
-        url: http://storage.googleapis.com/kubernetes-charts
-        source: https://github.com/kubernetes/charts/tree/master/stable
-      - name: incubator
-        url: http://storage.googleapis.com/kubernetes-charts-incubator
-        source: https://github.com/kubernetes/charts/tree/master/incubator
-      # Add your own repository
-      #- name: my-repo-name
-      #  url: my-repository-url
-      #  source: my-repository-source
+      #- name: stable
+      #  url: http://storage.googleapis.com/kubernetes-charts
+      #  source: https://github.com/kubernetes/charts/tree/master/stable
+      #- name: incubator
+      #  url: http://storage.googleapis.com/kubernetes-charts-incubator
+      #  source: https://github.com/kubernetes/charts/tree/master/incubator
+      - name: hack-night
+        url: https://migmartri.github.io/helm-hack-night-charts
+        source: https://github.com/migmartri/helm-hack-night-charts/tree/master/charts/
     # Enable Helm deployment integration
     releasesEnabled: false
     # Cache refresh interval in sec.
-    cacheRefreshInterval: 3600
+    cacheRefreshInterval: 15
 
 ui:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: gcr.io/helm-ui/monocular-ui
     tag: latest
@@ -80,18 +79,16 @@ prerender:
 
 ingress:
   hosts:
-  # Wildcard
-  -
-  # - monocular.local
+  - monocular.migmartri.com
 
   ## Ingress annotations
   ##
   annotations:
-  #   kubernetes.io/ingress.class: nginx
-  #   kubernetes.io/tls-acme: 'true'
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
 
   ## Ingress TLS configuration
   ## Secrets must be manually created in the namespace
   ##
-  # tls:
-  #   secretName: monocular.local-tls
+  tls:
+    secretName: monocular.migmartri.com-tls
